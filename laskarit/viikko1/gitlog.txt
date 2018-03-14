@@ -1,0 +1,108 @@
+$ git log --stat | cat
+commit fa4e55b3e43e7ea605fa7a4e3114be8b534a5fe1
+Author: The Viking <tom.olander@vikke.net>
+Date:   Wed Mar 14 23:41:15 2018 +0200
+
+    lisättiin file22
+
+ tiedostoja/file1  | 0
+ tiedostoja/file2  | 0
+ tiedostoja/file22 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 02b120ac67e12fa6aaade6b37146ac86b20f012e
+Author: The Viking <tom.olander@vikke.net>
+Date:   Wed Mar 14 23:37:30 2018 +0200
+
+    lisätty tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit ee77d5e59e57aafe3d520cfcdf5f68cad1235940
+Author: The Viking <tom.olander@vikke.net>
+Date:   Wed Mar 14 23:31:00 2018 +0200
+
+    muutoksia ekaan ja kolmanteen
+
+ eka.txt    | 8 +-------
+ kolmas.txt | 4 +++-
+ 2 files changed, 4 insertions(+), 8 deletions(-)
+
+commit 215ce4cd61ee6f4f7ae90fb4f70ba032bb11ad30
+Author: The Viking <tom.olander@vikke.net>
+Date:   Wed Mar 14 23:28:49 2018 +0200
+
+    muutettiin tiedosto.txt nimi
+
+ eka.txt      | 16 ++++++++++++++++
+ tiedosto.txt | 16 ----------------
+ 2 files changed, 16 insertions(+), 16 deletions(-)
+
+commit 6ea525cbf14252845999e49a21a7f08952c278c8
+Author: The Viking <tom.olander@vikke.net>
+Date:   Wed Mar 14 23:27:24 2018 +0200
+
+    toinen.txt poistettiin
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 0de3e9a793e540da5e4cc42947788a8a73e5da0c
+Author: The Viking <tom.olander@vikke.net>
+Date:   Wed Mar 14 23:25:45 2018 +0200
+
+    lorem ipsum muutoksia
+
+ tiedosto.txt | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+commit 4e5651643d3a7dbe58feddc6ce976b61b20b4cbc
+Author: The Viking <tom.olander@vikke.net>
+Date:   Wed Mar 14 23:24:55 2018 +0200
+
+    lorem ipsum
+
+ tiedosto.txt | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+commit ffbd201dd5930149a5c1a728473408f7cccfbb5c
+Author: The Viking <tom.olander@vikke.net>
+Date:   Wed Mar 14 23:23:39 2018 +0200
+
+    some secret stuff
+
+ kolmas.txt            | 1 +
+ stuff/secretstuff.txt | 0
+ toinen.txt            | 1 +
+ 3 files changed, 2 insertions(+)
+
+commit 5a6e9e15a01583f92fe6976a5c2a30c40555a611
+Author: The Viking <tom.olander@vikke.net>
+Date:   Wed Mar 14 23:21:13 2018 +0200
+
+    tiedosto kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 719c9245334f0cd4f579960f97c90cc98bfff20d
+Author: The Viking <tom.olander@vikke.net>
+Date:   Wed Mar 14 23:18:57 2018 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 2 ++
+ toinen.txt   | 0
+ 2 files changed, 2 insertions(+)
+
+commit bb1cea43a011e06ab6b95903d25f9118e448284c
+Author: The Viking <tom.olander@vikke.net>
+Date:   Wed Mar 14 23:16:34 2018 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
