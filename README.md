@@ -1,8 +1,8 @@
 # OTM-harjoitustyö
 
 ## Linkit dokumentaatioon ja työaikakirjanpitoon
-- [dokumentaatio.md](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentaatio/dokumentaatio.md)
-- [tyoaikakirjanpito.md](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
+- [dokumentaatio.md](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/dokumentaatio.md)
+- [tyoaikakirjanpito.md](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
 
 ## Linkit 1. viikon harjoitustiedostoihin
 - [gitlog.txt](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
