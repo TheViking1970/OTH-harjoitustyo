@@ -1,5 +1,5 @@
 # Missile Command 2018
-**(c) Tom Olander ( 014686795 ) --- OTM-harjoitustyö**
+**(c) Tom Olander ( 014686795 ) --- OTM-harjoitustyö**  
 Klooni tunnetusta Atarin Missile Command pelistä. Tehtävä on suojata kaupunkeja vihollismielisiltä avaruusolennoilta.
  
 ## Vaatimusmäärittely
