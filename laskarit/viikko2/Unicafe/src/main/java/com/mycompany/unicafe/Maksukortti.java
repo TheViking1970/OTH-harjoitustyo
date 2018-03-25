@@ -30,7 +30,9 @@ public class Maksukortti {
     public String toString() {
         int euroa = saldo/100;
         int senttia = saldo%100;
-        return "saldo: "+euroa+"."+senttia;
+        // Virheellinen koodi korjattu!
+        String sentit = "00"+senttia;
+        return "saldo: "+euroa+"."+sentit.substring(sentit.length()-2);
     } 
     
 }
