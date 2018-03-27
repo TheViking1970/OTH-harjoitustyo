@@ -4,6 +4,9 @@
 - [dokumentaatio.md](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/dokumentaatio.md)
 - [tyoaikakirjanpito.md](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
 
+## Linkki 2. viikon harjoitustiedostoihin
+- [testikattavuus.png](https://github.com/TheViking1970/OTH-harjoitustyo/blob/master/laskarit/viikko2/testikattavuus.png)
+
 ## Linkit 1. viikon harjoitustiedostoihin
 - [gitlog.txt](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 - [komentorivi.txt](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
