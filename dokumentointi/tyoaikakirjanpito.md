@@ -1,9 +1,10 @@
 # Työaikakirjanpito
 
-## Laskarit
-- Viikko 1: 6 h (Git)
-- Viikko 2: 8 h (Maven + JUnit)
+## Viikko 1
+- 1 h (yleistä ihmettelyä projektista ja päätös tehdä peli + Github)
 
-## Projekti
-- Viikko 1: 1 h (yleistä ihmettelyä projektista ja päätös tehdä peli + Github)
-- Viikko 2: 4 h (vaatimusmääritelmän luonti + Github)
+## Viikko 2
+- 4 h (vaatimusmääritelmän luonti + Github)
+
+## Viikko 3
+- 31h (JavaFX testailua, raakaversion toteutus, koodin parannuksia, testien tekeminen)
