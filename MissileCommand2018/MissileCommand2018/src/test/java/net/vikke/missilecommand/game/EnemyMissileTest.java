@@ -1,4 +1,4 @@
-package Game;
+package net.vikke.missilecommand.game;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,9 +6,6 @@ package Game;
  * and open the template in the editor.
  */
 
-import main.java.net.vikke.Game.EnemyMissile;
-import main.java.net.vikke.Game.Explosion;
-import main.java.net.vikke.Game.Game;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,7 +21,6 @@ public class EnemyMissileTest {
     
     EnemyMissile missile;
     
-   
     @Before
     public void setUp() {
         missile = new EnemyMissile(0,0,100,100,2);

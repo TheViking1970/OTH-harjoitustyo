@@ -3,20 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.net.vikke.Game;
+package net.vikke.missilecommand.game;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Paint;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Tom
- */
 public class EnemyMissile {
     double x;
     double y;
@@ -41,7 +29,7 @@ public class EnemyMissile {
         this.speedSq = Game.square(speed);
         isActive = true;
         
-        double length = Game.norm((x-xp),(y-yp));
+        double length = Game.norm((x - xp), (y - yp));
         this.dx = (xp - x) / length * speed;
         this.dy = (yp - y) / length * speed;
     }
@@ -52,7 +40,7 @@ public class EnemyMissile {
             return false;
         }
         // if JavaFX setup, then draw missile
-        if(Game.gfx != null) {
+        if (Game.gfx != null) {
             Game.gfx.drawEnemyMissile(x, y, dx, dy);
         }
         
@@ -68,7 +56,7 @@ public class EnemyMissile {
     }
     
     public boolean checkColission(Explosion explosion) {
-        if(Game.normSquared((x - explosion.x), (y - explosion.y)) < explosion.currRadius2) {
+        if (Game.normSquared((x - explosion.x), (y - explosion.y)) < explosion.currRadius2) {
             unDraw();
             return true;
         }
@@ -81,7 +69,7 @@ public class EnemyMissile {
     */
     public void unDraw() {
         // if JavaFX setup, then undraw in graphics
-        if(Game.gfx != null) {
+        if (Game.gfx != null) {
             Game.gfx.unDrawEnemyMissile(startX, startY, x, y);
         }
         // set active state to false, missile to be removed after handling
@@ -108,7 +96,7 @@ public class EnemyMissile {
     *  getSpeed()
     *  get missile speed
     */
-    public double getSpeed(){
+    public double getSpeed() {
         return this.speed;
     }
     
@@ -116,7 +104,7 @@ public class EnemyMissile {
     *  getActive() {
     *  get activity state of missile
     */
-    public boolean getActive(){
+    public boolean getActive() {
         return this.isActive;
     }
 }
