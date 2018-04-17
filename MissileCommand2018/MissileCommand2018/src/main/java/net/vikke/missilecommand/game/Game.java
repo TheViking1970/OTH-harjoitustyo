@@ -36,6 +36,7 @@ public class Game extends Application {
     int level = 1;
     int levelMissiles = 0;
     int spawnedMissiles = 0;
+    boolean levelUp = false;
     
     double mouseX = 0;
     double mouseY = 0;
@@ -86,6 +87,7 @@ public class Game extends Application {
                 handlePlayerMissiles();
                 drawPlayfield();
                 drawScore();
+                checkLevelUp();
             }
         }.start();
     }
@@ -103,6 +105,11 @@ public class Game extends Application {
     
     private void spawnEnemyMissiles() {
         if (spawnedMissiles >= levelMissiles) {
+            if (enemyMissiles.size() == 0) {
+                // end level
+                levelUp = true;
+            }
+            // otherwise just wait for all missiles to die
             return;
         }
         if (enemyMissiles.size() < 4 + level) {
@@ -113,11 +120,6 @@ public class Game extends Application {
                 enemyMissiles.add(new EnemyMissile(startX, 0, endX, 775, speed));
                 spawnedMissiles++;
             }
-        }
-        if (spawnedMissiles >= levelMissiles && enemyMissiles.size() == 0) {
-            // end level
-            level++;
-            setUpLevel();
         }
     }
     
@@ -267,6 +269,14 @@ public class Game extends Application {
         return new String[]{"BLACK", "YELLOW", "RED", "PINK", "CORAL", "BLUE", "GRAY"};
     }
     
+    private void checkLevelUp() {
+        if (this.levelUp) {
+            // if flag set, then do levelup
+            level++;
+            setUpLevel();
+        }
+    }
+    
     private void setUpLevel() {
         spawnedMissiles = 0;
         levelMissiles = 10 + (level - 1) * 5;
@@ -278,6 +288,7 @@ public class Game extends Application {
         makeTurrets();
         drawBackground();
         drawPlayfield();
+        levelUp = false;
     }
     
     static double square(double x) {
