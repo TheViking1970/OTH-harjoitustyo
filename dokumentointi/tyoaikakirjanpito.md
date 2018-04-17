@@ -1,6 +1,6 @@
 # Työaikakirjanpito
 
-Yhteensä: 45 h
+Yhteensä: 51 h
 
 ## Viikko 1
 - 1 h (yleistä ihmettelyä projektista ja päätös tehdä peli + Github)
@@ -18,3 +18,5 @@ Yhteensä: 45 h
 - 2 h (checkstylen käyttöönotto ja virheiden korjausta)
 - 1 h (lisätty uusia toimintoja peliin)
 - 3 h (refaktorointia jotta saadaan 0 virhettä checkstylessä)
+- 1 h (lisätty ominaisuus laskea pisteitä)
+- 2 h (luokkakaavion luonti ja muu dokumentointi)

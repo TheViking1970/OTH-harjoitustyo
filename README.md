@@ -1,20 +1,24 @@
 # OTM-harjoitustyö
 
-## Linkit dokumentaatioon ja työaikakirjanpitoon
-- [dokumentaatio.md](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/dokumentaatio.md)
-- [tyoaikakirjanpito.md](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
+## Dokumentaatio
+- [Käyttöohje](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/kayttoohje.md)
+- [Vaatimusmäärittely](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/dokumentaatio.md)
+- [Arkkitehtuurikuvaus](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
+- [Työaikakirjanpito](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
 
-## Peli
-- pelin voi nyt jo kokeilla, vaikka kaikki toiminnot eivät vielä ole toteutettu
-- peli alkaa itsestään kun sen ajaa
-- hiirellä tähdätään
-- ammutaan: A S D tai "LEFT" "DOWN" "RIGHT"
+## Komentorivitoiminnot
+### Testaus
+Testit suoritetaan komennolla
+- mvn test
+Testikattavuusraportti luodaan komennolla
+- mvn jacoco:report
+Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto target/site/jacoco/index.html
 
-## Itse harjoitusohjelma
-- harjoitusohjelma tulee (näillä näkymin) olemaan **Missile Command**-klooni.
-- Ohjelma tehdään Java:lla käytäen hyväksi JavaFX:ää
-- pitkäaikaistallentaminen tullaan suorittamaan tietokantaan
-- 3 eri vaikeustasoa
-- 2 eri pelikenttävaihtoehtoa (1 tai 3 ohjustornia)
-- High score-taulukko
-- *muuta asiaa tulossa....*
+### Checkstyle
+Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla
+- mvn jxr:jxr checkstyle:checkstyle
+Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto target/site/checkstyle.html
+
+
+
+
