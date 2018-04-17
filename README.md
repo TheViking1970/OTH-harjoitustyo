@@ -9,14 +9,20 @@
 ## Komentorivitoiminnot
 ### Testaus
 Testit suoritetaan komennolla
+
 **mvn test**
+
 Testikattavuusraportti luodaan komennolla
+
 **mvn jacoco:report**
+
 Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto target/site/jacoco/index.html
 
 ### Checkstyle
 Tiedostoon checkstyle.xml m‰‰rittelem‰t tarkistukset suoritetaan komennolla
-- mvn jxr:jxr checkstyle:checkstyle
+
+**mvn jxr:jxr checkstyle:checkstyle**
+
 Mahdolliset virheilmoitukset selvi‰v‰t avaamalla selaimella tiedosto target/site/checkstyle.html
 
 
