@@ -1,5 +1,7 @@
-# Luokka/pakkauskaavio
+# Arkitehtuuri
 
+## Luokka/pakkauskaavio
 ![alt text](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/gfx/luokkakaavio.jpg)
+## Sekvenssikaavio
 ![alt text](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/gfx/sekvenssikaavio.jpg)
 
