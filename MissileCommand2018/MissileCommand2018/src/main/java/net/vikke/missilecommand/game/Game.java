@@ -41,6 +41,12 @@ public class Game extends Application {
     double mouseX = 0;
     double mouseY = 0;
     
+    String currentState = "start";
+    String nextState = "";
+    boolean gotoNextState = false;
+    boolean nextStateTriggerEnabled = true;
+    boolean showBonus = false;
+    
     int cWidth = 800;
     int cHeight = 800;
 
@@ -50,6 +56,8 @@ public class Game extends Application {
 
     List<EnemyMissile> enemiesToRemove;
     List<Explosion> explosionsToAdd;
+    List<Explosion> explosionsToRemove;
+    List<Missile> toRemove;
 
     Turret turretLeft;
     Turret turretMid;
@@ -61,7 +69,7 @@ public class Game extends Application {
     HashMap<KeyCode, Turret> keysToTurret = new HashMap<>();
 
     static Graphics gfx;
-
+    
     public static void main(String[] args) {
         launch(args);
     }
@@ -76,20 +84,29 @@ public class Game extends Application {
         handleMouseInput(primaryStage);
         
         // setup level 1
-        setUpLevel();
+        setUpLevel(false);
         
         new AnimationTimer() {
             @Override
             public void handle(long now) {
+                stateMachine();
                 spawnEnemyMissiles();
                 handleEnemyMissiles();
                 handleExplosions();
                 handlePlayerMissiles();
                 drawPlayfield();
                 drawScore();
-                checkLevelUp();
             }
         }.start();
+    }
+    
+    private void setUpKeyCodes() {
+        keysToTurret.put(KeyCode.A, turretLeft);
+        keysToTurret.put(KeyCode.LEFT, turretLeft);
+        keysToTurret.put(KeyCode.S, turretMid);
+        keysToTurret.put(KeyCode.DOWN, turretMid);
+        keysToTurret.put(KeyCode.D, turretRight);
+        keysToTurret.put(KeyCode.RIGHT, turretRight);
     }
 
     private void drawTurretsAndGround() {
@@ -103,9 +120,9 @@ public class Game extends Application {
         }
     }
     
-    private void spawnEnemyMissiles() {
+    public void spawnEnemyMissiles() {
         if (spawnedMissiles >= levelMissiles) {
-            if (enemyMissiles.size() == 0) {
+            if (!showBonus && enemyMissiles.size() == 0) {
                 // end level
                 levelUp = true;
             }
@@ -113,7 +130,7 @@ public class Game extends Application {
             return;
         }
         if (enemyMissiles.size() < 4 + level) {
-            if (Math.random() > .975) {
+            if (enemyMissiles.size() == 0 || Math.random() > .975) {
                 double startX = Math.random() * cWidth;
                 double endX = Math.random() * (cWidth - 100) + 50;
                 double speed = 1 + (level - 1) / 20;
@@ -123,7 +140,7 @@ public class Game extends Application {
         }
     }
     
-    private void handleEnemyMissiles() {
+    public void handleEnemyMissiles() {
         enemiesToRemove = new ArrayList<>();
         explosionsToAdd = new ArrayList<>();
         
@@ -165,9 +182,9 @@ public class Game extends Application {
         }
     }
     
-    private void handleExplosions() {
+    public void handleExplosions() {
         // empty the arraylist
-        List<Explosion> explosionsToRemove = new ArrayList<>();
+        explosionsToRemove = new ArrayList<>();
         // iterate trough all eplosions, if animation ended then mark for removal
         for (Explosion explosion : explosions) {
             if (!explosion.animate()) {
@@ -184,8 +201,8 @@ public class Game extends Application {
         }
     }
     
-    private void handlePlayerMissiles() {
-        List<Missile> toRemove = new ArrayList<>();
+    public void handlePlayerMissiles() {
+        toRemove = new ArrayList<>();
         for (Missile missile : missiles) {
             boolean isActive = missile.move();
             if (!isActive) {
@@ -198,13 +215,13 @@ public class Game extends Application {
         }
     }
     
-    private void drawScore() {
+    public void drawScore() {
         if (Game.gfx != null) {
             Game.gfx.drawScore(score);
         }
     }
     
-    private void drawPlayfield() {
+    public void drawPlayfield() {
         for (City city : cities) {
             city.draw();
         }
@@ -221,18 +238,17 @@ public class Game extends Application {
         primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
-                keysToTurret.put(KeyCode.A, turretLeft);
-                keysToTurret.put(KeyCode.LEFT, turretLeft);
-                keysToTurret.put(KeyCode.S, turretMid);
-                keysToTurret.put(KeyCode.DOWN, turretMid);
-                keysToTurret.put(KeyCode.D, turretRight);
-                keysToTurret.put(KeyCode.RIGHT, turretRight);
-                Missile missile = null;
-                if (keysToTurret.containsKey(e.getCode())) {
-                    missile = keysToTurret.get(e.getCode()).fire(mouseX, mouseY);
-                }
-                if (missile != null) {
-                    missiles.add(missile);
+                setUpKeyCodes();
+                if (nextStateTriggerEnabled) {
+                    gotoNextState = (e.getCode() == KeyCode.SPACE);
+                } else {
+                    Missile missile = null;
+                    if (keysToTurret.containsKey(e.getCode())) {
+                        missile = keysToTurret.get(e.getCode()).fire(mouseX, mouseY);
+                    }
+                    if (missile != null) {
+                        missiles.add(missile);
+                    }
                 }
             }
         });
@@ -269,26 +285,84 @@ public class Game extends Application {
         return new String[]{"BLACK", "YELLOW", "RED", "PINK", "CORAL", "BLUE", "GRAY"};
     }
     
-    private void checkLevelUp() {
-        if (this.levelUp) {
+    public void checkLevelUp() {
+        if (levelUp) {
             // if flag set, then do levelup
             level++;
-            setUpLevel();
+            nextState = "bonus";
+            gotoNextState = true;
+            levelUp = false;
+            showBonus = true;
         }
     }
+
+    private void showStartScreen() {
+        if (Game.gfx != null) {
+            Game.gfx.drawStartScreen();
+        }
+        nextStateTriggerEnabled = true;
+    }
+
+    private void showBonusScreen() {
+        if (Game.gfx != null) {
+            Game.gfx.drawBonus(cities.length, turretLeft.ammo + turretMid.ammo + turretRight.ammo);
+        }
+        nextStateTriggerEnabled = true;
+    }
+
+    private void showEndScreen() {
+        if (Game.gfx != null) {
+            Game.gfx.drawEndScreen();
+        }
+        nextStateTriggerEnabled = true;
+    }
     
-    private void setUpLevel() {
-        spawnedMissiles = 0;
-        levelMissiles = 10 + (level - 1) * 5;
-        Game.gfx.setColors(getLevelColors());
-        missiles = new ArrayList<>();
-        enemyMissiles = new ArrayList<>();
-        explosions = new ArrayList<>();
+    public void setUpLevel(boolean flag) {
+        setUpArrays();
         makeCities();
         makeTurrets();
         drawBackground();
         drawPlayfield();
-        levelUp = false;
+        if (Game.gfx != null) {
+            Game.gfx.setColors(getLevelColors());
+        }
+        if (flag) {
+            nextStateTriggerEnabled = false;
+            showBonus = false;
+            levelUp = false;
+            spawnedMissiles = 0;
+            levelMissiles = 10 + (level - 1) * 5;
+        }
+    }
+    
+    private void setUpArrays() {
+        missiles = new ArrayList<>();
+        enemyMissiles = new ArrayList<>();
+        explosions = new ArrayList<>();
+        explosionsToAdd = new ArrayList<>();
+        explosionsToRemove = new ArrayList<>();
+        toRemove = new ArrayList<>();
+    }
+    
+    public void stateMachine() {
+        if (gotoNextState) {
+            if (currentState == "start") {
+                showStartScreen();
+                nextState = "play";
+            } else if (currentState == "play") {
+                setUpLevel(true);
+                nextState = "bonus";
+            } else if (currentState == "bonus") {
+                showBonusScreen();
+                nextState = "play";
+            } else if (currentState == "end") {
+                showEndScreen();
+                nextState = "start";
+            }
+            currentState = nextState;
+        }
+        gotoNextState = false;
+        checkLevelUp();
     }
     
     static double square(double x) {

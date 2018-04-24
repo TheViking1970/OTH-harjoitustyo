@@ -6,6 +6,9 @@
 - [Arkkitehtuurikuvaus](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
 - [Työaikakirjanpito](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
 
+## Release
+- [viikko5](https://github.com/TheViking1970/OTH-harjoitustyo/releases/download/viikko5/missilecommand2018_v0_1.jar) 
+
 ## Komentorivitoiminnot
 ### Testaus
 Testit suoritetaan komennolla

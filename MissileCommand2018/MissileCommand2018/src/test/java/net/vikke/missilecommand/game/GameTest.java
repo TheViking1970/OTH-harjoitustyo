@@ -5,6 +5,7 @@
  */
 package net.vikke.missilecommand.game;
 
+import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,12 +19,54 @@ import static org.junit.Assert.*;
  */
 public class GameTest {
     
+    Game game;
     
     @Before
     public void setUp() {
+        game = new Game();
+        game.setUpLevel(true);
     }
     
     @Test
-    public void testaa() {
+    public void testaaSpawnEnemyMissiles() {
+        game.spawnEnemyMissiles();
+        assertTrue(game.enemyMissiles.size() == 1);
+    }
+    
+    @Test
+    public void testaaHandleEnemyMissiles() {
+        game.handleEnemyMissiles();
+        assertTrue(game.enemiesToRemove.size() == 0);
+    }
+    
+    @Test
+    public void testaaHandleExplosions() {
+        game.handleExplosions();
+        assertTrue(game.explosionsToRemove.size() == 0);
+    }
+    
+    @Test
+    public void testaaHandlePlayerMissiles() {
+        game.handlePlayerMissiles();
+        assertTrue(game.toRemove.size() == 0);
+    }
+
+    @Test
+    public void testaaDrawPlayfield() {
+        game.drawPlayfield();
+        assertTrue(true);
+    }
+
+    @Test
+    public void testaaDrawScore() {
+        game.drawScore();
+        assertTrue(true);
+    }
+
+    @Test
+    public void testaaCheckLevelUp() {
+        game.levelUp = true;
+        game.checkLevelUp();
+        assertTrue(game.level == 2);
     }
 }

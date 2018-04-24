@@ -170,5 +170,31 @@ public class Graphics {
         gc.strokeOval(x - currRadius, y - currRadius, currRadius * 2, currRadius * 2);
     }
 
-
+    public void drawStartScreen() {
+        gc.setFill(Color.WHITE);
+        gc.setFont(scoreFont);
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.fillText("MISSILE COMMAND 2018", cWidth / 2, 200);
+        gc.fillText("AIM WITH MOUSE", cWidth / 2, 300);
+        gc.fillText("FIRE TURRETS WITH:", cWidth / 2, 350);
+        gc.fillText("A / S / D", cWidth / 2, 400);
+        gc.fillText("or", cWidth / 2, 450);
+        gc.fillText("LEFT / DOWN / RIGHT", cWidth / 2, 500);
+        gc.fillText("PRESS SPACEBAR TO CONTINUE", cWidth / 2, 600);
+    }
+    
+    public void drawEndScreen() {
+        
+    }
+    
+    public void drawBonus(int cities, int missiles) {
+        gc.setFill(Color.WHITE);
+        gc.setFont(scoreFont);
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.fillText("CITIES:" + cities + " x 500 = " + (cities * 500), cWidth / 2, 200);
+        gc.fillText("MISSILES: " + missiles + " x 10 = " + (missiles * 10), cWidth / 2, 300);
+        gc.fillText("TOTAL: " + (cities * 500 + missiles * 10), cWidth / 2, 400);
+        gc.fillText("PRESS SPACEBAR TO CONTINUE", cWidth / 2, 600);
+    }
+ 
 }
