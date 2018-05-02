@@ -7,6 +7,7 @@
 - [Työaikakirjanpito](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
 
 ## Release
+- [viikko6](https://github.com/TheViking1970/OTH-harjoitustyo/releases/download/viikko6/missilecommand2018_v0_2.jar) 
 - [viikko5](https://github.com/TheViking1970/OTH-harjoitustyo/releases/download/viikko5/missilecommand2018_v0_1.jar) 
 
 ## Komentorivitoiminnot
@@ -22,12 +23,17 @@ Testikattavuusraportti luodaan komennolla
 Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto target/site/jacoco/index.html
 
 ### Checkstyle
-Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla
+Tiedoston checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla
 
 **mvn jxr:jxr checkstyle:checkstyle**
 
 Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto target/site/checkstyle.html
 
+### JavaDoc
+Ohjelman koodista saa tehtyä JavaDocit seuraavasti:
 
+**mvn javadoc:javadoc**
+
+Luotu JavaDoc avataan selaimessa tiedostolla target/site/apidocs/index.html
 
 

@@ -18,6 +18,15 @@ public class Missile {
     double endY;
     boolean isActive;
     
+    /**
+     * Konstruktori pelaajan ohjukselle
+     * 
+     * @param x ohjuksen aloituksen x-koordinaatti
+     * @param y ohjuksen aloituksen y-koordinaatti
+     * @param xp    ohjuksen maalin x-koordinaatti
+     * @param yp    ohjuksen maalin y-koordinaatti
+     * @param speed ohjuksen nopeus
+     */
     public Missile(double x, double y, double xp, double yp, double speed) {
         this.x = x;
         this.y = y;
@@ -33,21 +42,22 @@ public class Missile {
         this.dy = (yp - y) / stepLength * speed;
     }
     
+    /**
+     * Liikutetaan ohjusta konstruktorissa määritellun suunnan mukaisesti
+     * 
+     * @return true, jos ohjus on edelleen aktiivinen, muuten false
+     */
     public boolean move() {
         if (!isActive) {
             return false;
         }
-        if (Game.gfx != null) {
-            Game.gfx.drawMissile(x, y, dx, dy);
-        }
+        Game.gfx.drawMissile(x, y, dx, dy);
         x += dx;
         y += dy;
         
         double dist2 = (x - endX) * (x - endX) + (y - endY) * (y - endY);
         if (dist2 < speed2) {
-            if (Game.gfx != null) {
-                Game.gfx.unDrawMissile(startX, startY, x, y);
-            }
+            Game.gfx.unDrawMissile(startX, startY, x, y);
             isActive = false;
         }
         return isActive;

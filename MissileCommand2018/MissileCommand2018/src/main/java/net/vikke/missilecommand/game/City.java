@@ -12,6 +12,13 @@ public class City {
     double leftX;
     boolean isAlive;
     
+    /**
+     * Konstruktori Kaupungille.
+     * 
+     * @param x Kaupungin keskipisteen x-koordinaatti
+     * @param y Kaupungin keskipisteen y-koordinaatti
+     * @param width Kaupungin leveys
+     */
     public City(double x, double y, double width) {
         this.x = x;
         this.y = y;
@@ -20,26 +27,22 @@ public class City {
         leftX = x - width / 2;
     }
     
+    /**
+     * Kun kaupuki saa osuman.
+     */
     public void hit() {
         isAlive = false;
-        if (Game.gfx != null) {
-            Game.gfx.unDrawCity(leftX, y, width);
-        }
+        Game.gfx.unDrawCity(leftX, y, width);
     }
     
-    public double dist2(EnemyMissile missile) {
-        return (missile.x - x) * (missile.x - x) + (missile.y - y) * (missile.y - y);
-    }
-    
+    /**
+     * Piirrä kaupunki. kaupungin isAlive-muuttuja vaikuttaa siihen millainen kuva piirretään.
+     */
     public void draw() {
         if (isAlive) {
-            if (Game.gfx != null) {
-                Game.gfx.drawCity(leftX, y);
-            }
+            Game.gfx.drawCity(leftX, y);
         } else {
-            if (Game.gfx != null) {
-                Game.gfx.drawDestroyedCity(leftX, y);
-            }
+            Game.gfx.drawDestroyedCity(leftX, y);
         }
     }
 

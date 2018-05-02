@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package net.vikke.missilecommand.game;
 
 public class Explosion {
@@ -14,6 +10,13 @@ public class Explosion {
     double angle;
     boolean isActive;
     
+    /**
+     * Konstruktori Räjähdykselle.
+     * 
+     * @param x räjähdyksen keskipisteen x-koordinaatti
+     * @param y räjähdyksen keskipisteen y-koordinaatti
+     * @param radius mihin kokoon räjähdys kasvaa
+     */
     public Explosion(double x, double y, double radius) {
         this.x = x;
         this.y = y;
@@ -24,6 +27,11 @@ public class Explosion {
         isActive = true;
     }
     
+    /**
+     * Animoidaan räjähdystä, eli joko räjähdys suurenee tai pienenee.
+     * 
+     * @return true, jos räjähdys on edelleen aktiivinen, muuten false
+     */
     public boolean animate() {
         // size of the explosion is calculated with trigonometry, therefore the use of angles
         // decrement angle ( angle goes from PI to 0 )
@@ -35,9 +43,7 @@ public class Explosion {
         if (currRadius > 0) {
             // determine whether to draw or undraw explosion
             boolean draw = angle > Math.PI / 2 ? true : false;
-            if (Game.gfx != null) {
-                Game.gfx.drawExplosion(x, y, currRadius, draw);
-            }
+            Game.gfx.drawExplosion(x, y, currRadius, draw);
         } else {
             // else mark explosion for deletion
             isActive = false;

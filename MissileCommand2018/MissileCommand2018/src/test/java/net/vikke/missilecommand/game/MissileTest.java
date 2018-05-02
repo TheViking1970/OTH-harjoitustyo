@@ -23,6 +23,7 @@ public class MissileTest {
     @Before
     public void setUp() {
         missile = new Missile(0, 0, 100, 100, 2);
+        Game.setUpGraphics(null);
     }
     
     @Test
@@ -39,5 +40,18 @@ public class MissileTest {
         boolean largerThan = missile.y >= (Math.sqrt(2) - .01);
         boolean smallerThan = missile.y <= (Math.sqrt(2) + .01);
         assertTrue(largerThan && smallerThan);
+    }
+    
+    @Test
+    public void testaaLiikuttaaJosEiAktiivinen() {
+        missile.isActive = false;
+        assertTrue(!missile.move());
+    }
+
+    @Test
+    public void testaaLiikuttaaMaaliin() {
+        missile.x = missile.endX - missile.dx;
+        missile.y = missile.endY - missile.dy;
+        assertTrue(!missile.move());
     }
 }

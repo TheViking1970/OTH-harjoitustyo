@@ -23,6 +23,7 @@ public class GameTest {
     
     @Before
     public void setUp() {
+        Game.setUpGraphics(null);
         game = new Game();
         game.setUpLevel(true);
     }

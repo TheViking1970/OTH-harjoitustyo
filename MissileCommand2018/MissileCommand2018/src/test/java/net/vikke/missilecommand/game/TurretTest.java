@@ -23,6 +23,7 @@ public class TurretTest {
     @Before
     public void setUp() {
         turret = new Turret(10, 0,0, 2);
+        Game.setUpGraphics(null);
     }
     
     @Test

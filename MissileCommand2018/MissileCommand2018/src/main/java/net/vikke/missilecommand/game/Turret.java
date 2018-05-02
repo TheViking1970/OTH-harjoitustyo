@@ -12,6 +12,14 @@ public class Turret {
     double y;
     int speed;
     
+    /**
+     * Konstruktori Tykille
+     * 
+     * @param ammo  ammusten määrä alussa
+     * @param x tykin keskipisteen x-koordinaatti
+     * @param y tykin keskipisteen y-koordinaatti
+     * @param speed millä nopeudella tykki ampuu ohjuksia
+     */
     public Turret(int ammo, double x, double y, int speed) {
         this.ammo = ammo;
         this.isAlive = true;
@@ -20,6 +28,13 @@ public class Turret {
         this.speed = speed;
     }
     
+    /**
+     * Ammutaan tykillä.
+     * 
+     * @param xp    maalin x-koordinaatti
+     * @param yp    maalin y-koordinaatti
+     * @return  ammuttu ohjus, mikäli ampuminen onnistui, muuten null
+     */
     public Missile fire(double xp, double yp) {
         if (!isAlive || ammo <= 0) {
             return null;
@@ -31,8 +46,12 @@ public class Turret {
         return new Missile(x, y, xp, yp, speed);
     }
     
+    /**
+     * Osutaan tykkiin.
+     */
     public void hit() {
         isAlive = false;
         ammo = 0;
     }
+    
 }

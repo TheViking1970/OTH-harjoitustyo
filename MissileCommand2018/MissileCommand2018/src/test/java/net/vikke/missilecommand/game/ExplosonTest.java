@@ -23,13 +23,26 @@ public class ExplosonTest {
     @Before
     public void setUp() {
         explosion = new Explosion(100, 100, 20);
+        Game.setUpGraphics(null);
     }
     
     @Test
-    public void testaa() {
+    public void testaaAnimointi() {
         explosion.animate();
         boolean largerThan = explosion.angle >= (Math.PI - .025 - .01);
         boolean smallerThan = explosion.angle <= (Math.PI - .025 + .01);
         assertTrue(largerThan && smallerThan);
+    }
+    
+    @Test
+    public void testaaPoistamista() {
+        explosion.angle = 0;
+        assertTrue(!explosion.animate());
+    }
+
+    @Test
+    public void testaaUndraw() {
+        explosion.angle = Math.PI / 2;
+        assertTrue(explosion.animate());
     }
 }

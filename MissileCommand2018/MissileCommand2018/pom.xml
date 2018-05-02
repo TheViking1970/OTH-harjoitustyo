@@ -40,6 +40,7 @@
                 <configuration>
                     <excludes>
                         <exclude>**/graphics/*</exclude>
+                        <exclude>**/input/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

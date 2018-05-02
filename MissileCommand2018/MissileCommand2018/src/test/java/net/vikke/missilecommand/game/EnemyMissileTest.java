@@ -6,6 +6,7 @@ package net.vikke.missilecommand.game;
  * and open the template in the editor.
  */
 
+import net.vikke.missilecommand.helper.Helper;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,6 +25,7 @@ public class EnemyMissileTest {
     @Before
     public void setUp() {
         missile = new EnemyMissile(0,0,100,100,2);
+        Game.setUpGraphics(null);
     }
     
     @Test
@@ -37,8 +39,8 @@ public class EnemyMissileTest {
         // dx = dy = sqrt(2)
         missile.move();
         // get dx and dy SQUARED
-        double dx2 = missile.getX()*missile.getX();
-        double dy2 = missile.getY()*missile.getY();
+        double dx2 = Helper.square(missile.getX());
+        double dy2 = Helper.square(missile.getY());
         // get missile speed SQUARED
         double speed2 = missile.getSpeed()*missile.getSpeed();
         // get current active state
@@ -55,8 +57,8 @@ public class EnemyMissileTest {
             missile.move();
         }
         // get (100-x) and (100-y) SQUARED
-        double dx2 = (100-missile.getX())*(100-missile.getX());
-        double dy2 = (100-missile.getY())*(100-missile.getY());
+        double dx2 = Helper.square(100-missile.getX());
+        double dy2 = Helper.square(100-missile.getY());
         // get current active state
         boolean act = missile.getActive();
         // get missile speed SQUARED
@@ -84,7 +86,22 @@ public class EnemyMissileTest {
     
     @Test
     public void testaaTormays() {
-        // Explosion class has to be redone to not require JavaFx for testing.
-        assertTrue(true);
+        Explosion explosion = new Explosion(0, 0, 10);
+        explosion.currRadius2 = 100;
+        assertTrue(missile.checkColission(explosion));
     }
+
+    @Test
+    public void testaaEiTormays() {
+        Explosion explosion = new Explosion(15, 15, 10);
+        explosion.currRadius2 = 100;
+        assertTrue(!missile.checkColission(explosion));
+    }
+
+    @Test
+    public void testaaLiikuttaaKunEiAktiivinen() {
+        missile.isActive = false;
+        assertTrue(!missile.move());
+    }
+
 }
