@@ -8,7 +8,7 @@
 - Game-olio luo 1 tai 3 Turret-oliota ja 6 City-oliota
 
 ## Luokka/pakkauskaavio
-![alt text](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/gfx/luokkakaavio-2.jpg)
+![alt text](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/gfx/luokkakaavio-2.png)
 
 ## Sekvenssikaavio
 ![alt text](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/gfx/sekvenssikaavio.jpg)
