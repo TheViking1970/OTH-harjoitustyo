@@ -7,7 +7,7 @@
 - [Työaikakirjanpito](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
 
 ## Release
-- [viikko6](https://github.com/TheViking1970/OTH-harjoitustyo/releases/download/viikko6/missilecommand2018_v0_2.jar) 
+- [viikko6](https://github.com/TheViking1970/OTH-harjoitustyo/releases/download/viikko6/missilecommand2018_v_0_2.jar) 
 - [viikko5](https://github.com/TheViking1970/OTH-harjoitustyo/releases/download/viikko5/missilecommand2018_v0_1.jar) 
 
 ## Komentorivitoiminnot
