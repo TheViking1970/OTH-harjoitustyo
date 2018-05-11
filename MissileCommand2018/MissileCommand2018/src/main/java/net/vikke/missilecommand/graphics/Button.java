@@ -14,11 +14,8 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import net.vikke.missilecommand.game.Game;
 
-/**
- *
- * @author Tom
- */
 public class Button {
     Pane pane;
     Rectangle rect;
@@ -50,14 +47,17 @@ public class Button {
         pane.getChildren().addAll(rect, text);
         handleClicks();
     }
-        
+    
+    /**
+     * Hoitaa nappien painallukset ja muuttaa niiden värityksiä näyttäkseen valitun
+     */
     private void handleClicks() {
         pane.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
                 Pane p = (Pane) e.getSource();
-                List<Rectangle> rectangles = (p.getId().equals("turret") ? Graphics.turretButtonRectangles : Graphics.difficultyButtonRectangles);
-                List<Button> buttons = (p.getId().equals("turret") ? Graphics.turretButtons : Graphics.difficultyButtons);
+                List<Rectangle> rectangles = (p.getId().contains("turret") ? Graphics.turretButtonRectangles : Graphics.difficultyButtonRectangles);
+                List<Button> buttons = (p.getId().contains("turret") ? Graphics.turretButtons : Graphics.difficultyButtons);
                 for (Rectangle r : rectangles) {
                     r.setStroke(unSelectedStrokeColor);
                     r.setFill(unSelectedFillColor);
@@ -66,22 +66,67 @@ public class Button {
                     b.selected = false;
                 }
                 setSelected();
+                handleTurretButtons(p);
+                handleTurretButtons(p);
             }
         });
     }
     
+    /**
+     * Napin Pane-elementti
+     * 
+     * @return  Pane
+     */
     public Pane getPane() {
         return pane;
     }
     
+    /**
+     * Napin Rectangle-elementti
+     * 
+     * @return  Rectangle 
+     */
     public Rectangle getRect() {
         return rect;
     }
     
+    /**
+     * Aseta nappi valittuun tilaan
+     */
     public void setSelected() {
         rect.setStroke(selectedStrokeColor);
         rect.setFill(selectedFillColor);
         selected = true;
     }
-
+    
+    /**
+     * Hoitaa Tykki-nappien klikkukset
+     * 
+     * @param p napin Pane-elementti
+     */
+    public void handleTurretButtons(Pane p) {
+        if (p.getId().contains("turret")) {
+            if (p.getId().contains("1")) {
+                Game.numTurrets = 1;
+            } else {
+                Game.numTurrets = 3;
+            }
+        }
+    }
+    
+    /**
+     * Hoitaa Vaikeustaso-nappien klikkaukset
+     * @param p napin Pane-elementti
+     */
+    public void handleDifficultyButtons(Pane p) {
+        if (p.getId().contains("difficulty")) {
+            if (p.getId().toLowerCase().contains("1")) {
+                Game.numDifficulty = 1;
+            } else if (p.getId().toLowerCase().contains("3")) {
+                Game.numDifficulty = 3;
+            } else {
+                Game.numDifficulty = 2;
+            }
+        }
+    }
 }

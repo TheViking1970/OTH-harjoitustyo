@@ -43,7 +43,10 @@ public class Graphics {
     Font logo2018Font = Font.font("sans-serif", FontWeight.BOLD, 150);
     Font chooseFont = Font.font("sans-serif", FontWeight.BOLD, 20);
     public static Font buttonFont = Font.font("sans-serif", FontWeight.BOLD, 20);
+    Font highscoreFont = Font.font("monospace", FontWeight.BOLD, 30);
+    Font prevHighsFont = Font.font("monospace", FontWeight.BOLD, 20);
     Font scoreFont = Font.font("sans-serif", FontWeight.BOLD, 30);
+    Font infoFont = Font.font("sans-serif", FontWeight.BOLD, 15);
     Font ammoFont = Font.font("sans-serif", FontWeight.BOLD, 20);
     
     int cWidth;
@@ -56,12 +59,22 @@ public class Graphics {
     
     Group groupTurrets = new Group();
     Group groupDifficulties = new Group();
+    Group groupInputs = new Group();
 
-    
+    /**
+     * Overload metodi käytetään testimoodissa
+     */
     public Graphics() {
         this.testMode = true;
     }
     
+    /**
+     * Alusta garphics API
+     * @param primaryStage Stage
+     * @param cWidth Canvas width
+     * @param cHeight Canvas Height
+     * @param title Window title
+     */
     public Graphics(Stage primaryStage, int cWidth, int cHeight, String title) {
         this.cWidth = cWidth;
         this.cHeight = cHeight;
@@ -71,6 +84,7 @@ public class Graphics {
         this.primaryStage = primaryStage;
         root.getChildren().add(canvas);
         setupButtons();
+        setupInputs();
         Scene theScene = new Scene(root, cWidth, cHeight, false, SceneAntialiasing.DISABLED);
         primaryStage.setTitle("Missile Command 2018");
         primaryStage.setScene(theScene);
@@ -78,6 +92,10 @@ public class Graphics {
         primaryStage.show();
     }
     
+    /**
+     * Pelissä käytetyt värit
+     * @param colors värinimiä
+     */
     public void setColors(String[] colors) {
         this.backgroundColor = Color.web(colors[0]);
         this.foregroundColor = Color.web(colors[1]);
@@ -89,12 +107,13 @@ public class Graphics {
     }
     
     /**
-    *  drawEnemyMissile(
-    *    double current x position
-    *    double current y position
-    *    double delta x
-    *    double delta y)
-    */
+     * Piirrä vihollisohjus
+     * 
+     * @param x nykyien x-koordinaatti
+     * @param y nykyinen y-koordinaatti
+     * @param dx x muutos
+     * @param dy y muutos
+     */
     public void drawEnemyMissile(double x, double y, double dx, double dy) {
         
         if (testMode) {
@@ -114,6 +133,13 @@ public class Graphics {
         gc.fillOval(x - 1, y - 1, 2, 2);
     }
     
+    /**
+     * Poista (piirrä yli taustavärillä) vihollisohjus 
+     * @param startX alku x-koordinaatti
+     * @param startY alku y-koordinaatti
+     * @param x loppu x-koordinaatti
+     * @param y loppu y-koordinaatti
+     */
     public void unDrawEnemyMissile(double startX, double startY, double x, double y) {
 
         if (testMode) {
@@ -125,6 +151,14 @@ public class Graphics {
         gc.strokeLine(startX, startY, x, y);
     }
     
+    /**
+     * Piirrä pelaajan ohjus
+     * 
+     * @param x alku x-koordinaatti
+     * @param y alku y-koordinaatti
+     * @param dx x-muutos
+     * @param dy y-muutos
+     */
     public void drawMissile(double x, double y, double dx, double dy) {
 
         if (testMode) {
@@ -136,6 +170,13 @@ public class Graphics {
         gc.strokeLine(x, y, x + dx, y + dy);
     }
     
+    /**
+     * Poista (piirrä yli taustavärillä) plaajan ohjus
+     * @param startX alku x-koordinaatti
+     * @param startY alku y-koordinaatti
+     * @param endX loppu x-koordinaatti
+     * @param endY loppu y-koordinaatti
+     */
     public void unDrawMissile(double startX, double startY, double endX, double endY) {
 
         if (testMode) {
@@ -147,6 +188,12 @@ public class Graphics {
         gc.strokeLine(startX, startY, endX, endY);
     }
 
+    /**
+     * Piirrä kaupunki
+     * 
+     * @param x x-koordinaatti
+     * @param y y-koordinaatti
+     */
     public void drawCity(double x, double y) {
 
         if (testMode) {
@@ -158,6 +205,12 @@ public class Graphics {
                 new double[]{y, y - 20, y - 10, y - 20, y - 10, y - 20, y - 10, y - 20, y}, 9);
     }
 
+    /**
+     * Piirrä tuhottu kaupunki
+     * 
+     * @param x x-koordinaatti
+     * @param y y-koordinaatti
+     */
     public void drawDestroyedCity(double x, double y) {
 
         if (testMode) {
@@ -169,6 +222,13 @@ public class Graphics {
                 new double[]{y, y - 5, y - 10, y - 5, y - 10, y - 5, y - 10, y - 5, y}, 9);
     }
 
+    /**
+     * Poista (piirrä yli taustavärillä) kaupunki
+     * 
+     * @param x x-koordinaatti
+     * @param y y-koordinaatti
+     * @param width  kaupungin leveys
+     */
     public void unDrawCity(double x, double y, double width) {
 
         if (testMode) {
@@ -179,6 +239,9 @@ public class Graphics {
         gc.fillRect(x, y - 20, width, 20);
     }
     
+    /**
+     * Täytä ruutu taustavärillä
+     */
     public void drawEmptyBackground() {
 
         if (testMode) {
@@ -190,6 +253,13 @@ public class Graphics {
                        new double[]{0,      0, cHeight, cHeight}, 4);
     }
     
+    /**
+     * Piirrä Tykki
+     * 
+     * @param xm x-koordinaatti
+     * @param y y-koordinaatti
+     * @param ammo ammusten määrä
+     */
     public void drawTurret(double xm, double y, int ammo) {
 
         if (testMode) {
@@ -208,6 +278,11 @@ public class Graphics {
         gc.fillText(ammoText, xm, y - 10);
     }
     
+    /**
+     * Piirrä tämänhetkinen pistesaldo ruudulle
+     * 
+     * @param score pisteet
+     */
     public void drawScore(int score) {
         
         if (testMode) {
@@ -227,6 +302,9 @@ public class Graphics {
         gc.fillText(scoreText, cWidth / 2, 30);
     }
     
+    /**
+     * piirrä maapinta
+     */
     public void drawBaseGround() {
 
         if (testMode) {
@@ -237,11 +315,24 @@ public class Graphics {
         gc.fillRect(0, cHeight - 25, cWidth, 25);
     }
     
+    /**
+     * Näytä valintanapit
+     * 
+     * @param show jos true, niin näytä, muuten piilota 
+     */
     public void showButtons(boolean show) {
         groupTurrets.setVisible(show);
         groupDifficulties.setVisible(show);
     }
     
+    /**
+     * Piirrä räjähdys
+     * 
+     * @param x x-koordinaatti
+     * @param y y-koordinaatti
+     * @param currRadius tämänhetkinen säde
+     * @param draw jos true, niin piirretään, muuten poistetaan (piirretään taustavärillä)
+     */
     public void drawExplosion(double x, double y, double currRadius, boolean draw) {
 
         if (testMode) {
@@ -259,6 +350,18 @@ public class Graphics {
         gc.strokeOval(x - currRadius, y - currRadius, currRadius * 2, currRadius * 2);
     }
 
+    /**
+     * Alusta Tekstikenttä syötteelle
+     */
+    public void setupInputs() {
+        Input input = new Input(cWidth / 2, 500, groupInputs);
+        groupInputs.getChildren().add(input.getPane());
+        root.getChildren().add(groupInputs);
+    }
+    
+    /**
+     * Alusta valintanapit
+     */
     public void setupButtons() {
         
         setupTurretButtons();
@@ -271,9 +374,12 @@ public class Graphics {
         root.getChildren().add(groupTurrets);
     }
     
+    /**
+     * Alusta Tykki-napit
+     */
     public void setupTurretButtons() {
-        Button btn1 = new Button("turret", "1", 100, 300, 100, 100);
-        Button btn3 = new Button("turret", "3", 100, 425, 100, 100);
+        Button btn1 = new Button("turret-1", "1", 100, 300, 100, 100);
+        Button btn3 = new Button("turret-3", "3", 100, 425, 100, 100);
         groupTurrets.getChildren().addAll(btn3.getPane(), btn1.getPane());
         turretButtonRectangles.add(btn1.getRect());
         turretButtonRectangles.add(btn3.getRect());
@@ -282,10 +388,13 @@ public class Graphics {
         btn3.setSelected();
     }
     
+    /**
+     * Alusta Vaikeustaso-napit
+     */
     public void setupDifficultyButtons() {
-        Button btnEasy = new Button("difficulty", " EASY ", 600, 300, 100, 58);
-        Button btnNormal = new Button("difficulty", "NORM", 600, 300 + 58 + 25, 100, 58);
-        Button btnHard = new Button("difficulty", "HARD", 600, 300 + 58 + 58 + 50, 100, 58);
+        Button btnEasy = new Button("difficulty-1", " EASY ", 600, 300, 100, 58);
+        Button btnNormal = new Button("difficulty-2", "NORM", 600, 300 + 58 + 25, 100, 58);
+        Button btnHard = new Button("difficulty-3", "HARD", 600, 300 + 58 + 58 + 50, 100, 58);
         groupDifficulties.getChildren().addAll(btnHard.getPane(), btnNormal.getPane(), btnEasy.getPane());
         difficultyButtonRectangles.add(btnEasy.getRect());
         difficultyButtonRectangles.add(btnNormal.getRect());
@@ -296,18 +405,61 @@ public class Graphics {
         btnNormal.setSelected();
     }
     
-    public void drawStartScreen() {
+    /**
+     * Piirrä aloitusruutu
+     * @param highscores Array korkeimmista tuloksista
+     */
+    public void drawStartScreen(String[] highscores) {
         
         if (testMode) {
             return;
         }
-
+        drawEmptyBackground();
         drawStartScreenLogo();
+        drawHighScores(highscores);
         drawStartScreenHelp();
         drawStartScreenButtons();
-        
     }
     
+    /**
+     * Piirrä korkeimmat tulokset
+     * @param highscores Array korkeimmista tuloksista
+     */
+    private void drawHighScores(String[] highscores) {
+        gc.setFont(highscoreFont);
+        gc.setFill(Color.RED);
+        gc.fillText("HIGHSCORE", cWidth / 2, 285);
+        gc.setFill(Color.WHITE);
+        int y = 0;
+        int dy = 30;
+        for (int i = 0; i < 5; i++) {
+            if (i == 1) {
+                drawPrevHighsHeader(y, dy);
+                y++;
+                dy = 25;
+            }
+            String paddedScore = "00000" + highscores[2 * i];
+            String scoreText = paddedScore.substring(paddedScore.length() - 5) + "   " + highscores[2 * i + 1];
+            gc.fillText(scoreText, cWidth / 2, 325 + y * dy);
+            y++;
+        }
+    }
+    
+    /**
+     * Piirrä edelliset korkeimmat tulokset
+     * @param y y-koordinaatti mihin piirretään
+     * @param dy kuinka paljon siirrytään alaspäin joka rivillä
+     */
+    private void drawPrevHighsHeader(int y, int dy) {
+        gc.setFont(prevHighsFont);
+        gc.setFill(Color.YELLOW);
+        gc.fillText("Previous highs:", cWidth / 2, 325 + y * dy);
+        gc.setFill(Color.LIGHTGRAY);
+    }
+    
+    /**
+     * Piirrä aloitusruudun napit
+     */
     private void drawStartScreenButtons() {
         gc.setFont(chooseFont);
         gc.setFill(Color.GRAY);
@@ -320,17 +472,25 @@ public class Graphics {
         showButtons(true);
     }
     
+    /**
+     * Piirrä aloitusruudun infotektsit
+     */
     private void drawStartScreenHelp() {
-        gc.setFill(Color.WHITE);
+        gc.setFill(Color.GRAY);
+        gc.setFont(infoFont);
+        gc.fillText("AIM WITH MOUSE", cWidth / 2, 500);
+        gc.fillText("FIRE TURRETS WITH:", cWidth / 2, 515);
+        gc.fillText("A / S / D", cWidth / 2, 530);
+        gc.fillText("or", cWidth / 2, 545);
+        gc.fillText("LEFT / DOWN / RIGHT", cWidth / 2, 560);
         gc.setFont(scoreFont);
-        gc.fillText("AIM WITH MOUSE", cWidth / 2, 300);
-        gc.fillText("FIRE TURRETS WITH:", cWidth / 2, 350);
-        gc.fillText("A / S / D", cWidth / 2, 400);
-        gc.fillText("or", cWidth / 2, 450);
-        gc.fillText("LEFT / DOWN / RIGHT", cWidth / 2, 500);
+        gc.setFill(Color.WHITE);
         gc.fillText("PRESS SPACEBAR TO START", cWidth / 2, 600);
     }
     
+    /**
+     * Piirrä aloitusruudun logo
+     */
     private void drawStartScreenLogo() {
         gc.setFill(Color.WHITE);
         gc.setFont(logoFont);
@@ -346,15 +506,43 @@ public class Graphics {
         gc.fillText("2018", cWidth / 2, 200);
     }
     
-    public void drawEndScreen() {
+    /**
+     * Piirrä lopetusruutu
+     * @param highScore jos true, niin oli korkein tulos ja se näytetään, muuten ei
+     * @param score pisteet
+     */
+    public void drawEndScreen(boolean highScore, int score) {
 
         if (testMode) {
             return;
         }
         
+        gc.setFill(Color.RED);
+        gc.setFont(logoFont);
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.fillText("GAME", cWidth / 2, 150);
+        gc.fillText("OVER", cWidth / 2, 225);
+
+        gc.setFill(Color.WHITE);
+        gc.setFont(scoreFont);
+        
+        if (highScore) {
+            gc.fillText("CONGRATULATIONS!", cWidth / 2, 300);
+            gc.fillText("NEW HIGH SCORE!", cWidth / 2, 350);
+            gc.fillText("Your score: " + score, cWidth / 2, 400);
+            groupInputs.setVisible(true);
+        }
+        
+        gc.fillText("PRESS SPACEBAR", cWidth / 2, 600);
     }
     
-    public void drawBonus(int cities, int missiles) {
+    /**
+     * Piirrä bonukset
+     * @param cities elossa olevien kaupunkien lukumäärä
+     * @param missiles jäljellä olevien ohjuste lukumäärä
+     * @param awardBonusCity jos true, niin pelaaja saa lisäkaupungin
+     */
+    public void drawBonus(int cities, int missiles, boolean awardBonusCity) {
 
         if (testMode) {
             return;
@@ -366,7 +554,13 @@ public class Graphics {
         gc.fillText("CITIES: " + cities + " x 500 = " + (cities * 500), cWidth / 2, 200);
         gc.fillText("MISSILES: " + missiles + " x 10 = " + (missiles * 10), cWidth / 2, 300);
         gc.fillText("TOTAL: " + (cities * 500 + missiles * 10), cWidth / 2, 400);
+        
+        if (awardBonusCity) {
+            gc.setFill(Color.RED);
+            gc.fillText("!!! BONUS CITY AWARDED !!!", cWidth / 2, 500);
+        }
+        
+        gc.setFill(Color.WHITE);
         gc.fillText("PRESS SPACEBAR TO CONTINUE", cWidth / 2, 600);
     }
- 
 }

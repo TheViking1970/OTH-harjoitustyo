@@ -30,6 +30,10 @@ public class Input {
         setUpKeyCodes();
     }
     
+    /**
+     * Hoitaa näppäimmistön painallukset pelissä
+     * @param primaryStage 
+     */
     public void handleKeyboardInput(Stage primaryStage) {
         primaryStage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
@@ -45,6 +49,10 @@ public class Input {
         });
     }
  
+    /**
+     * Hoitaa hiiren klikkauset pelissä
+     * @param primaryStage 
+     */
     public void handleMouseInput(Stage primaryStage) {
         primaryStage.addEventHandler(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
             @Override
@@ -55,6 +63,9 @@ public class Input {
         });    
     }
 
+    /**
+     * Aseta ohjausnapit
+     */
     private void setUpKeyCodes() {
         keysToTurret.put(KeyCode.A, "LEFT");
         keysToTurret.put(KeyCode.LEFT, "LEFT");
