@@ -1,6 +1,6 @@
 # Työaikakirjanpito
 
-Yhteensä: 71 h
+Yhteensä: 88 h
 
 ## Viikko 1 (1 h)
 - 1 h (yleistä ihmettelyä projektista ja päätös tehdä peli + Github)
@@ -35,3 +35,11 @@ Yhteensä: 71 h
 - 2 h aloitusruudun valikot
 - 1 h checkstyle korjauksia
 - 2 h dokumentointi
+
+## Viikko 7 (17 h)
+- 3 h lisää ominaisuuksia
+- 3 h otettu tietokanta käyttöön
+- 3 h refaktorointia
+- 3 h testausta ja debuggausta
+- 2 h testikattavuutta ja checkstyleä
+- 3 h dokumentointia

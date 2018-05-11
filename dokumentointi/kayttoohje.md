@@ -1,13 +1,15 @@
 # Käyttöohje
 
 ## Lataa peli
-- Lataa ohjelma [missilecommand2018_v0_2.jar](https://github.com/TheViking1970/OTH-harjoitustyo/releases/download/viikko6/missilecommand2018_v0_2.jar) 
+- Lataa ohjelma [missilecommand-1.0.jar](https://github.com/TheViking1970/OTH-harjoitustyo/releases/download/viikko7/missilecommand-1.0.jar) 
+- Lataa tietokanta [MC-highscores.db](https://github.com/TheViking1970/OTH-harjoitustyo/releases/download/viikko7/MC-highscores.db) 
 
 ## Konfigurointi
-- Peli ei vaadi konfigrointia
+- Luo pelin asennushakemistoon hakemisto nimeltä "database"
+- Siirrä MC-highscores.db tiedosto tähän hakemistoon
 
 ## Käynnistä peli
-- Käynnistä peli komennolla **java -jar missilecommand2018_v0_2.jar**
+- Käynnistä peli komennolla **java -jar missilecommand2018-1.0.jar**
 
 ## Peli
 - Ohjelmaa käynistettäessä avautuu aloitusruutu
@@ -16,7 +18,3 @@
 - Peli alkaa painamalla välilyöntiä
 - Hiirellä tähdätään
 - Ammutaan: A / S / D tai "LEFT"- / "DOWN"- / "RIGHT"-kursoreilla
-
-## Puuttuvia toimintoja
-- Pelissä ei ole vielä High Score taulua
-- Aloitusruudun valinnat tykkien ja vaikeustason osalta ei vielä vaikuta peliin!
