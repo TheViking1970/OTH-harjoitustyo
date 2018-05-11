@@ -9,7 +9,7 @@
 - Siirrä MC-highscores.db tiedosto tähän hakemistoon
 
 ## Käynnistä peli
-- Käynnistä peli komennolla **java -jar missilecommand2018-1.0.jar**
+- Käynnistä peli komennolla **java -jar missilecommand-1.0.jar**
 
 ## Peli
 - Ohjelmaa käynistettäessä avautuu aloitusruutu
