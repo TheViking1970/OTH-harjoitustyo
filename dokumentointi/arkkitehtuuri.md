@@ -1,11 +1,15 @@
 # Arkitehtuuri
 
 ## Tallennus tietokantaan
-- Tietokantaan tallennettava High Score taulu ei ole vielä luotu. Tätä varten luodaan oma pakkaus "database" johon tulee kaikki tietokantaan liittyvät luokat.
+- Tietokantatallennus käyttää Database-luokkaa hyväkseen
 
 ## Luokat
+- Peli alkaa Main-luokasta
 - Pelilogiikka sijaitsee Game-luokan ainoassa oliossa
 - Game-olio luo 1 tai 3 Turret-oliota ja 6 City-oliota
+- Pelin edetessä Game-olio luo sekä Missile- että EnemyMissile-olioita
+- Helper-luokka sisältää muutaman apufunktion
+- Graphics-luokka on pelin graafinen API, joka huolehtii piirtämisestä JavaFX:llä
 
 ## Luokka/pakkauskaavio
 ![alt text](https://github.com/TheViking1970/oth-harjoitustyo/blob/master/dokumentointi/gfx/luokkakaavio-3.png)
